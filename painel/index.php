@@ -1,10 +1,11 @@
 <?php
-require_once '../database.php';
+include '../conexao.php';
 
 // Buscar todos os participantes
 try {
-    $db = getDatabase();
-    $stmt = $db->query("SELECT id, nome, email, data_inscricao FROM participantes ORDER BY nome ASC");
+    $conn = mysqlConnect();
+    $stmt = $conn->prepare("SELECT id, nome, email, data_inscricao FROM participantes ORDER BY nome ASC");
+    $stmt->execute();
     $participantes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch(PDOException $e) {
     $erro = "Erro ao buscar participantes: " . $e->getMessage();
