@@ -1,22 +1,25 @@
 .map-container {
-            position: relative;
-            cursor: pointer;
-        }
-        .map-ampliar-btn {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            z-index: 2;
-        }
-        .map-img {
-            width: 100%;
-            border-radius: 0.5rem;
-            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
-        }
-    
-        .carousel-inner {
+    position: relative;
+    cursor: pointer;
+}
+
+.map-ampliar-btn {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+}
+
+.map-img {
+    width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.carousel-inner {
     height: 400px;
 }
+
 .carousel-item img {
     height: 100%;
     object-fit: cover;

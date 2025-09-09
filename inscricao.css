@@ -1,4 +1,3 @@
-/* ...existing code... */
 
 .painel-inscricao {
     padding: 1.5rem;
@@ -34,5 +33,3 @@
     justify-content: center;
     gap: 0.5rem;
 }
-
-/* Remove estilos inline do HTML e use as classes acima */
