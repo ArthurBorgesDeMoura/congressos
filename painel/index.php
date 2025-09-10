@@ -1,12 +1,14 @@
 <?php
 include '../conexao.php';
 
+$participantes = []; 
+
 // Buscar todos os participantes
 try {
     $conn = mysqlConnect();
-    $stmt = $conn->prepare("SELECT id, nome, email, data_inscricao FROM participantes ORDER BY nome ASC");
+    $stmt = $conn->prepare("SELECT id, nome, email FROM PARTICIPANTES ORDER BY nome ASC");
     $stmt->execute();
-    $participantes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+     $participantes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch(PDOException $e) {
     $erro = "Erro ao buscar participantes: " . $e->getMessage();
 }
@@ -73,18 +75,6 @@ try {
                     <p class="mb-0">Total de Inscritos</p>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="stats-card text-center">
-                    <h3 class="text-success"><i class="fas fa-calendar me-2"></i><?php echo date('d/m/Y'); ?></h3>
-                    <p class="mb-0">Data Atual</p>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="stats-card text-center">
-                    <h3 class="text-info"><i class="fas fa-clock me-2"></i><?php echo date('H:i'); ?></h3>
-                    <p class="mb-0">Horário Atual</p>
-                </div>
-            </div>
         </div>
 
         <!-- Listagem de Participantes -->
@@ -120,15 +110,7 @@ try {
                                                     <?php echo htmlspecialchars($participante['email']); ?>
                                                 </small>
                                             </div>
-                                            <div class="text-end">
-                                                <small class="text-muted">
-                                                    <i class="fas fa-calendar-alt me-1"></i>
-                                                    Inscrito em: <?php echo date('d/m/Y H:i', strtotime($participante['data_inscricao'])); ?>
-                                                </small><br>
-                                                <span class="badge bg-primary">
-                                                    <i class="fas fa-eye me-1"></i>Ver Perfil
-                                                </span>
-                                            </div>
+                                            
                                         </div>
                                     </a>
                                 </div>
