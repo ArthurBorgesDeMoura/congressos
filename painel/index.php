@@ -21,41 +21,7 @@ try {
     <title>Painel de Controle - Congressos Científicos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        .header-panel {
-            background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%);
-            color: white;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
-        }
-        .stats-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid #0d6efd;
-        }
-        .participant-item {
-            background: white;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .participant-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
-        .participant-link {
-            text-decoration: none;
-            color: inherit;
-        }
-        .participant-link:hover {
-            color: inherit;
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body style="background-color: #f8f9fa;">
     <!-- Header -->
@@ -66,10 +32,10 @@ try {
         </div>
     </div>
 
-    <div class="container">
+    <div class="container justify-content-center">
         <!-- Estatísticas -->
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 ">
                 <div class="stats-card text-center">
                     <h3 class="text-primary"><i class="fas fa-users me-2"></i><?php echo count($participantes); ?></h3>
                     <p class="mb-0">Total de Inscritos</p>
@@ -136,11 +102,13 @@ try {
 
     <!-- Footer -->
     <footer class="bg-light mt-5 py-4 border-top">
-        <div class="container text-center">
-            <div class="text-muted">
-                <i class="fas fa-cog me-1"></i>
-                Painel de Controle - Congressos Científicos | 
-                <i class="fas fa-calendar me-1"></i><?php echo date('Y'); ?>
+        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <div class="text-center mb-3 mb-md-0">
+                <img src="https://moodle.universo.edu.br/pluginfile.php/1/theme_moove/logo/1755605085/brasao_2d.png" alt="Logo Universo" width="80" class="mb-2 mx-auto d-block">
+                <div class="fw-semibold">UBERLÂNDIA - MG | 2025</div>
+            </div>
+            <div class="text-center text-md-end">
+                <span class="fw-light">Universo - Desenvolvido por Arthur Borges de Moura.</span>
             </div>
         </div>
     </footer>

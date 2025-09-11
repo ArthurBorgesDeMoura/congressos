@@ -17,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn = mysqlConnect();
        $stmt = $conn->prepare("
         INSERT INTO PARTICIPANTES 
-        (cpf, nome, email, senha, telefone, endereco, cidade, estado) 
-        VALUES (:cpf, :nome, :email, :senha, :telefone, :endereco, :cidade, :estado)
+        (cpf, nome, email, senha, telefone, endereco, cidade, estado, pais, titulacao, instituicao) 
+        VALUES (:cpf, :nome, :email, :senha, :telefone, :endereco, :cidade, :estado, :pais, :titulacao, :instituicao)
     ");
 
 
@@ -30,7 +30,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ':telefone' => $telefone,
             ':endereco' => $endereco,
             ':cidade' => $cidade,
-            ':estado' => $estado
+            ':estado' => $estado,
+            ':pais' => $pais,
+            ':titulacao' => $titulacao,
+            ':instituicao' => $instituicao
         ])) {
         header("Location: ../inscricao.html?abrirModal=true");
     } else {

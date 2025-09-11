@@ -1,5 +1,5 @@
 <?php
-require_once '../database.php';
+include '../conexao.php';
 
 // Verificar se o ID foi fornecido
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -11,8 +11,8 @@ $participante_id = (int)$_GET['id'];
 
 // Buscar dados do participante
 try {
-    $db = getDatabase();
-    $stmt = $db->prepare("SELECT * FROM participantes WHERE id = ?");
+    $conn = mysqlConnect();
+    $stmt = $conn ->prepare("SELECT * FROM participantes WHERE id = ?");
     $stmt->execute([$participante_id]);
     $participante = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -31,63 +31,7 @@ try {
     <title>Perfil do Participante - Congressos Científicos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        .header-profile {
-            background: linear-gradient(135deg, #0d6efd 0%, #0056b3 100%);
-            color: white;
-            padding: 2rem 0;
-            margin-bottom: 2rem;
-        }
-        .profile-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            border-top: 5px solid #0d6efd;
-        }
-        .info-row {
-            background: #f8f9fa;
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid #0d6efd;
-        }
-        .info-label {
-            font-weight: 600;
-            color: #495057;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        .info-value {
-            font-size: 1.1rem;
-            color: #212529;
-        }
-        .avatar-placeholder {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, #0d6efd, #0056b3);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            margin: 0 auto 2rem;
-        }
-        .back-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 1000;
-        }
-        .status-badge {
-            background: linear-gradient(45deg, #28a745, #20c997);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-weight: 500;
-        }
-    </style>
+    <link rel="stylesheet" href="perfil.css">
 </head>
 <body style="background-color: #f8f9fa;">
     <!-- Botão Voltar -->
@@ -119,11 +63,11 @@ try {
                 <div class="col-lg-8">
                     <div class="profile-card">
                         <!-- Avatar e Nome -->
-                        <div class="text-center">
+                        <div class="text-center ">
                             <div class="avatar-placeholder">
                                 <?php echo strtoupper(substr($participante['nome'], 0, 1)); ?>
                             </div>
-                            <h2 class="mb-1"><?php echo htmlspecialchars($participante['nome']); ?></h2>
+                            <h2 class="mb-4"><?php echo htmlspecialchars($participante['nome']); ?></h2>
                             <span class="status-badge">
                                 <i class="fas fa-check-circle me-1"></i>Inscrito
                             </span>
@@ -164,16 +108,7 @@ try {
                                     <span class="info-value"><?php echo htmlspecialchars($participante['telefone']); ?></span>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="info-row">
-                                    <span class="info-label">
-                                        <i class="fas fa-calendar-plus me-1"></i>Data de Inscrição
-                                    </span>
-                                    <span class="info-value">
-                                        <?php echo date('d/m/Y H:i', strtotime($participante['data_inscricao'])); ?>
-                                    </span>
-                                </div>
-                            </div>
+                            
                         </div>
 
                         <!-- Endereço -->
@@ -261,11 +196,13 @@ try {
 
     <!-- Footer -->
     <footer class="bg-light mt-5 py-4 border-top">
-        <div class="container text-center">
-            <div class="text-muted">
-                <i class="fas fa-user-circle me-1"></i>
-                Perfil do Participante - Congressos Científicos | 
-                <i class="fas fa-calendar me-1"></i><?php echo date('Y'); ?>
+        <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between">
+            <div class="text-center mb-3 mb-md-0">
+                <img src="https://moodle.universo.edu.br/pluginfile.php/1/theme_moove/logo/1755605085/brasao_2d.png" alt="Logo Universo" width="80" class="mb-2 mx-auto d-block">
+                <div class="fw-semibold">UBERLÂNDIA - MG | 2025</div>
+            </div>
+            <div class="text-center text-md-end">
+                <span class="fw-light">Universo - Desenvolvido por Arthur Borges de Moura.</span>
             </div>
         </div>
     </footer>
